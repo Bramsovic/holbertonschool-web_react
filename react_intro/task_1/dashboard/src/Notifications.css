@@ -1,0 +1,14 @@
+.root-notifications {
+  padding: 8px;
+}
+
+.notification-items {
+  border: 3px dotted #e1003c;
+}
+
+.notification-items p {
+  margin: 1em;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: normal;
+}
