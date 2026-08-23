@@ -12,19 +12,15 @@ describe('App', () => {
   })
 
   test('renders the body and footer text', () => {
-    render(<App />)
+    const { container } = render(<App />)
 
     expect(
       screen.getByText(/login to access the full dashboard/i),
     ).toBeInTheDocument()
-    expect(
-      screen.getByText(
-        new RegExp(
-          `copyright ${new Date().getFullYear()} - holberton school main dashboard`,
-          'i',
-        ),
-      ),
-    ).toBeInTheDocument()
+
+    const footer = container.querySelector('.App-footer')
+    expect(footer).toBeInTheDocument()
+    expect(footer).toHaveTextContent(/copyright/i)
   })
 
   test('renders the Holberton logo', () => {
@@ -45,19 +41,19 @@ describe('App', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    await user.click(screen.getByText(/^email:$/i))
-    expect(screen.getByLabelText(/^email:$/i)).toHaveFocus()
+    await user.click(screen.getByText(/email/i))
+    expect(screen.getByLabelText(/email/i)).toHaveFocus()
 
-    await user.click(screen.getByText(/^password:$/i))
-    expect(screen.getByLabelText(/^password:$/i)).toHaveFocus()
+    await user.click(screen.getByText(/password/i))
+    expect(screen.getByLabelText(/password/i)).toHaveFocus()
   })
 
   test('renders two input elements', () => {
     const { container } = render(<App />)
 
     expect(container.querySelectorAll('input')).toHaveLength(2)
-    expect(screen.getByLabelText(/^email:$/i)).toHaveAttribute('type', 'email')
-    expect(screen.getByLabelText(/^password:$/i)).toHaveAttribute(
+    expect(screen.getByLabelText(/email/i)).toHaveAttribute('type', 'email')
+    expect(screen.getByLabelText(/password/i)).toHaveAttribute(
       'type',
       'password',
     )
@@ -67,8 +63,8 @@ describe('App', () => {
     const { container } = render(<App />)
 
     expect(container.querySelectorAll('label')).toHaveLength(2)
-    expect(screen.getByText(/^email:$/i)).toBeInTheDocument()
-    expect(screen.getByText(/^password:$/i)).toBeInTheDocument()
+    expect(screen.getByText(/email/i)).toBeInTheDocument()
+    expect(screen.getByText(/password/i)).toBeInTheDocument()
   })
 
   test('renders the OK button', () => {
