@@ -1,0 +1,35 @@
+.App-header {
+  display: flex;
+  min-height: 26vh;
+  align-items: center;
+  border-bottom: 3px solid #e1003c;
+}
+
+.App-header img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.App-header h1 {
+  margin: 0 0 0 30px;
+  color: #e1003c;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+@media (max-width: 700px) {
+  .App-header {
+    min-height: 130px;
+  }
+
+  .App-header img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .App-header h1 {
+    margin-left: 16px;
+    font-size: clamp(24px, 8vw, 34px);
+  }
+}
