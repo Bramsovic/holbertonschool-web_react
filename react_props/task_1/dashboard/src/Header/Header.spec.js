@@ -1,20 +1,22 @@
 import { render, screen } from '@testing-library/react'
-import Header from './Header.jsx'
+import Header from './Header'
 
 describe('Header', () => {
   test('renders the Holberton logo', () => {
     render(<Header />)
 
-    expect(
-      screen.getByRole('img', { name: /holberton logo/i }),
-    ).toBeInTheDocument()
+    const logo = screen.getByAltText('holberton logo')
+
+    expect(logo).toBeInTheDocument()
+    expect(logo.tagName).toBe('IMG')
   })
 
-  test('renders the School dashboard heading', () => {
-    render(<Header />)
+  test('renders an h1 with the correct text', () => {
+    const { container } = render(<Header />)
 
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'School dashboard' }),
-    ).toBeInTheDocument()
+    const heading = container.querySelector('h1')
+
+    expect(heading).toBeInTheDocument()
+    expect(heading).toHaveTextContent(/^School dashboard$/)
   })
 })
