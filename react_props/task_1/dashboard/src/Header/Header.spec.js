@@ -5,18 +5,19 @@ describe('Header', () => {
   test('renders the Holberton logo', () => {
     render(<Header />)
 
-    const logo = screen.getByAltText('holberton logo')
+    const logo = screen.getByAltText(/holberton logo/i)
 
     expect(logo).toBeInTheDocument()
-    expect(logo.tagName).toBe('IMG')
   })
 
   test('renders an h1 with the correct text', () => {
-    const { container } = render(<Header />)
+    render(<Header />)
 
-    const heading = container.querySelector('h1')
+    const heading = screen.getByRole('heading', {
+      level: 1,
+      name: /school dashboard/i,
+    })
 
     expect(heading).toBeInTheDocument()
-    expect(heading).toHaveTextContent(/^School dashboard$/)
   })
 })

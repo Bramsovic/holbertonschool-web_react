@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import Notifications from './Notifications.jsx'
+import Notifications from './Notifications'
 
 describe('Notifications', () => {
   afterEach(() => {
