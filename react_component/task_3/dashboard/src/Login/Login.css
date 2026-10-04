@@ -1,0 +1,20 @@
+.App-body {
+  min-height: 50.5vh;
+  padding: 50px 30px;
+  border-bottom: 3px solid #e1003c;
+  flex: 1;
+}
+
+.App-body p {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .App-body {
+    min-height: 0;
+    padding: 28px 16px;
+  }
+}
