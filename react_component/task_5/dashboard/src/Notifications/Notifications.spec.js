@@ -86,5 +86,48 @@ describe('Notifications', () => {
       )
     },
   )
+  test('keeps the rendered content when the notification count stays the same', () => {
+    const { rerender } = render(
+      <Notifications displayDrawer notifications={notifications} />,
+    )
+    const updatedNotifications = notifications.map((notification) => (
+      notification.id === 1
+        ? { ...notification, value: 'Updated course available' }
+        : notification
+    ))
+
+    rerender(<Notifications displayDrawer notifications={updatedNotifications} />)
+
+    expect(screen.getAllByRole('listitem')).toHaveLength(3)
+    expect(screen.getByText('New course available')).toBeInTheDocument()
+    expect(screen.queryByText('Updated course available')).not.toBeInTheDocument()
+  })
+
+  test('updates the rendered content when the notification count changes', () => {
+    const { rerender } = render(
+      <Notifications displayDrawer notifications={notifications} />,
+    )
+    const addedNotification = { id: 4, type: 'default', value: 'New event available' }
+
+    rerender(
+      <Notifications
+        displayDrawer
+        notifications={[...notifications, addedNotification]}
+      />,
+    )
+
+    expect(screen.getAllByRole('listitem')).toHaveLength(4)
+    expect(screen.getByText('New event available')).toBeInTheDocument()
+
+    rerender(<Notifications displayDrawer notifications={notifications} />)
+
+    expect(screen.getAllByRole('listitem')).toHaveLength(3)
+    expect(screen.queryByText('New event available')).not.toBeInTheDocument()
+
+    rerender(<Notifications displayDrawer notifications={[]} />)
+
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0)
+    expect(screen.getByText('No new notification for now')).toBeInTheDocument()
+  })
 
 })

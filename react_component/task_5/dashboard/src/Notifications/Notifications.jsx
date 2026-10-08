@@ -5,6 +5,13 @@ import NotificationItem from './NotificationItem.jsx'
 import './Notifications.css'
 
 class Notifications extends Component {
+  shouldComponentUpdate(nextProps) {
+    const { notifications = [] } = this.props
+    const { notifications: nextNotifications = [] } = nextProps
+
+    return notifications.length !== nextNotifications.length
+  }
+
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`)
   }
