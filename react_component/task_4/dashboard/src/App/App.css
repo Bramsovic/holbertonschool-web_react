@@ -1,0 +1,47 @@
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202020;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.App {
+  display: flex;
+  width: calc(100% - 16px);
+  min-height: 98vh;
+  margin: 2vh 8px 0;
+  flex-direction: column;
+}
+
+.App > .App-footer {
+  margin-top: auto;
+}
+
+.App:has(#CourseList) > .App-footer {
+  border-top: 3px solid #e1003c;
+}
+
+@media (max-width: 700px) {
+  .App {
+    width: calc(100% - 32px);
+    min-height: calc(100vh - 16px);
+    margin: 16px auto 0;
+  }
+}
